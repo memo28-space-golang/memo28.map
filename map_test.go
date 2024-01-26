@@ -1,4 +1,4 @@
-package memo28Map
+package memo_map
 
 import (
 	"fmt"
@@ -76,7 +76,7 @@ func TestDel(t *testing.T) {
 
 	m := Map[string, int]{}
 
-	has := m.Add("200", 200).del("200").Has("200")
+	has := m.Add("200", 200).Del("200").Has("200")
 
 	assertions.EqualValues(false, has, fmt.Sprint("del value ====", has))
 }

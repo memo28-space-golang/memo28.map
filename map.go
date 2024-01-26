@@ -1,9 +1,9 @@
-package memo28Map
+package memo_map
 
 import (
 	"errors"
 	"fmt"
-	"github.com/memo28-space-golang/memo28.slice/pkg"
+	"github.com/memo28-space-golang/memo28.slice"
 )
 
 type MapKeys interface {
@@ -12,10 +12,15 @@ type MapKeys interface {
 
 type Map[T MapKeys, V any] map[T]V
 
-// Keys 参考js Object.keys
-func (receiver Map[T, V]) Keys() memo28Slice.Slice[T] {
+func (receiver Map[T, V]) Set(key T, val V) Map[T, V] {
+	receiver[key] = val
+	return receiver
+}
 
-	keys := make(memo28Slice.Slice[T], 0, len(receiver))
+// Keys 参考js Object.keys
+func (receiver Map[T, V]) Keys() memo_slice.memo28Slice[T] {
+
+	keys := make(memo_slice.memo28Slice[T], 0, len(receiver))
 	for k := range receiver {
 		keys.Push(k)
 	}
@@ -23,8 +28,8 @@ func (receiver Map[T, V]) Keys() memo28Slice.Slice[T] {
 }
 
 // Values 参考js Object.values
-func (receiver Map[T, V]) Values() *memo28Slice.Slice[V] {
-	keys := make(memo28Slice.Slice[V], 0, len(receiver))
+func (receiver Map[T, V]) Values() *memo_slice.memo28Slice[V] {
+	keys := make(memo_slice.memo28Slice[V], 0, len(receiver))
 	for _, val := range receiver {
 		keys.Push(val)
 	}
@@ -49,7 +54,7 @@ func (receiver Map[T, V]) Add(key T, val V) Map[T, V] {
 	return receiver
 }
 
-func (receiver Map[T, V]) del(key T) Map[T, V] {
+func (receiver Map[T, V]) Del(key T) Map[T, V] {
 	delete(receiver, key)
 	return receiver
 }
