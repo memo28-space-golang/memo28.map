@@ -18,9 +18,10 @@ func (receiver Map[T, V]) Set(key T, val V) Map[T, V] {
 }
 
 // Keys 参考js Object.keys
-func (receiver Map[T, V]) Keys() memo_slice.memo28Slice[T] {
 
-	keys := make(memo_slice.memo28Slice[T], 0, len(receiver))
+func (receiver Map[T, V]) Keys() memo_slice.Slice[T] {
+
+	keys := make(memo_slice.Slice[T], 0, len(receiver))
 	for k := range receiver {
 		keys.Push(k)
 	}
@@ -28,8 +29,8 @@ func (receiver Map[T, V]) Keys() memo_slice.memo28Slice[T] {
 }
 
 // Values 参考js Object.values
-func (receiver Map[T, V]) Values() *memo_slice.memo28Slice[V] {
-	keys := make(memo_slice.memo28Slice[V], 0, len(receiver))
+func (receiver Map[T, V]) Values() *memo_slice.Slice[V] {
+	keys := make(memo_slice.Slice[V], 0, len(receiver))
 	for _, val := range receiver {
 		keys.Push(val)
 	}
